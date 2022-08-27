@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Yangiliklarni qo'shish :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+
+	
+	<div class="list-group">
+		{% for item in categories %}
+		
+		<a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action ">{{ item.title }}</a>
+		
+		{% endfor %}
+	
+	</div>
+	
+	
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<h2>Yangiliklarni qo'shish</h2>	
+<form action="{% url 'add_news' %}" method="post">
+	{% comment %} Forma yaratishda ishlatiladi as_p,as_ul,as_table {% endcomment %}
+	{% csrf_token %}
+	{{ form.as_p}}
+	<button type="submit" class="btn-primary btn-block">Yangiliklarni qo'shish</button>
+</form>				
+
+
+{% endblock %}
+		
+
+
